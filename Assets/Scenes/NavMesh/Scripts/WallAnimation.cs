@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class WallAnimation : MonoBehaviour
 {
-    public float speed = 1f;
+    public float speed = 1.0f;
     public float strength = 2.5f;
 
     private float randomOffset;
+
     void Start()
     {
-        randomOffset = Random.Range(-strength, strength);
+        randomOffset = Random.Range(-2.5f,2.5f);
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
         Vector3 pos = transform.position;

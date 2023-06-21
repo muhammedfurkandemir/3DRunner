@@ -5,27 +5,55 @@ using TMPro;
 
 public class CheckCollisions : MonoBehaviour
 {
-    public int Score;
+    public int score;
     public TextMeshProUGUI CoinText;
+
+    // Added new codes
+    public PlayerController playerController;
+    Vector3 PlayerStartPos;
+    public GameObject speedBoosterIcon;
+
+
+    private void Start()
+    {
+        PlayerStartPos = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        speedBoosterIcon.SetActive(false);
+    }
+
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Coin"))
         {
-            //Debug.Log("is done!");
+            //Debug.Log("Coin collected!..");
             AddCoin();
+            //Destroy(other.gameObject);
             other.gameObject.SetActive(false);
         }
+        else if (other.CompareTag("Finish"))
+        {
+            PlayerFinished();
+        }
     }
+
+    void PlayerFinished() {
+        playerController.runningSpeed = 0f;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            Debug.Log("Touched Obstacle");
+            //Debug.Log("Touched Obstacle!..");
+            // Added new codes
+            transform.position = PlayerStartPos;
         }
     }
+
     public void AddCoin()
     {
-        Score++;
-        CoinText.text = "Score: " + Score.ToString();
+        score++;
+        CoinText.text = "Score: " + score.ToString();
     }
 }

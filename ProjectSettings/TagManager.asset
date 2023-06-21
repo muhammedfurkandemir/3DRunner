@@ -7,6 +7,9 @@ TagManager:
   - Coin
   - Obstacle
   - SpeedBoost
+  - BumperObs
+  - Undefined
+  - Runner
   layers:
   - Default
   - TransparentFX
